@@ -40,7 +40,8 @@
                     <t-loader active></t-loader>
                 </div>
                 <iron-icon id="clearButton" icon="close"></iron-icon>
-                <p class="error">{{errorMessage}}</p>
+                <p class="error empty-error">[[errorMessage]]</p>
+                <p class="invalid-error error">[[invalidErrorMessage]]</p>
                 <div id="dropBox" class="autocomplete"></div>
             </paper-material>
     </template>
@@ -177,6 +178,11 @@ Polymer({
             value: 'Please select a value!'
         },
 
+        invalidErrorMessage:{
+            type:String,
+            value:'Invalid value'
+        },
+
         caching: {
             type: Boolean,
             reflectToAttribute: true,
@@ -208,19 +214,26 @@ Polymer({
         AutoComplete({
             method: "POST"
         }, this);
-        var component = this;
+        var component = this,
+        //to handle the scrolling position when focused
+        scrollTop;
         this.$.autoSuggest.addEventListener('focus',function(){
             function allFunction(){
+            //to scroll to top when focused for ios
+                scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
                 component.classList.add('focused');
+                document.body.scrollTop = document.documentElement.scrollTop = 0;
             }
             setTimeout(allFunction, 10);
         });
-        this.$.autoSuggest.addEventListener('focusout',function(){
+        this.$.autoSuggest.addEventListener('blur',function(){
             function allFunction(){
                 Polymer.IronDropdownScrollManager.removeScrollLock(component);
                 component.classList.remove('focused');
                 component.$.dropBox.className = "autocomplete ";
                 component.$.spinner.hidden = true;
+                //to scroll to previous position when focusout
+                document.body.scrollTop = document.documentElement.scrollTop = scrollTop;
             }
             setTimeout(allFunction, 10);
         });
@@ -244,13 +257,22 @@ Polymer({
 
     validate: function() {
         if (this.required) {
-            if (this.selectedValue === '' || this.isInvalid) {
-                this.classList.add('no-value');
-                this.isInvalid = false;
-                return false;
+                if(this.selectedValue === '' )
+                    this.classList.add('no-value');
+                else
+                {   
+                    if(this.isInvalid){
+                       this.classList.add('invalid-value');
+                    }
+                }
+                if(this.selectedValue === '' || this.isInvalid)
+                {
+                    this.isInvalid = false;
+                    return false;
+                }
             }
             this.classList.remove('no-value');
-        }
+            this.classList.remove('invalid-value');
         return true;
     },
 
