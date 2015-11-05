@@ -22,7 +22,12 @@
       position: absolute; 
       right: 5px;
       top: 50%;
-      transform:translateY(-50%); 
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
+      
       color:  #fff;
       background: var(--grey-three);
       width: 12px;    
@@ -164,7 +169,18 @@
     display: none;
   }
 
-  :host.no-value p {
+  :host.no-value .empty-error {
+    display: block;
+    position: absolute;
+    top: 100%;
+    padding: 0;
+    margin: 0;
+    left: 0;
+    font-size: var(--error-text-size);
+    color: var(--error-color);
+  }
+
+  :host.invalid-value .invalid-error {
     display: block;
     position: absolute;
     top: 100%;
@@ -180,6 +196,11 @@
    border-color:var(--error-color)!important;
   }
   
+  :host.invalid-value input {
+   border-bottom: 2px solid ;
+   border-color:var(--error-color)!important;
+  }  
+
   #spinner{
     background-color: var(--autosuggest-item-bg-color);
     border-bottom:1px solid ;
