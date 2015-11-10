@@ -257,7 +257,7 @@ Polymer({
 
     validate: function() {
         if (this.required) {
-                if(this.selectedValue === '' )
+                if(!this.selectedValue == true )
                     this.classList.add('no-value');
                 else
                 {   
@@ -265,7 +265,7 @@ Polymer({
                        this.classList.add('invalid-value');
                     }
                 }
-                if(this.selectedValue === '' || this.isInvalid)
+                if(!this.selectedValue == true || this.isInvalid)
                 {
                     this.isInvalid = false;
                     return false;
@@ -310,6 +310,7 @@ Polymer({
  
     clear: function() {
         this.selectedValue = "";
+        this.selectedItem = null;
         this.$.autoSuggest.value = "";
         this.classList.remove('label-is-floating');
     }
