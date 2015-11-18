@@ -50,13 +50,18 @@ The autosuggest is a form element used to offer suggestions to the user, as text
 * Disables the form element.
 * Shown as a checkbox in the property panel.
 * Default Value: Unchecked.
+ 
+**2. Mandatory**
+* Designates the field as mandatory in a form.
+* Shown as a checkbox in the property panel.
+* Default Value: Unchecked.
 
-**2. Label Float**
+**3. Label Float**
 * Configures whether the label of this form field lies within the field or floats outside it.
 * Shown as a checkbox in the property panel.
 * Default Value: Checked.
 
-**3. Trigger at**
+**4. Trigger at**
 * Defines the number of characters that need to be entered before the autosuggest will trigger.
 * Shown as an input field in the property panel.
 * Possible range of values: (?)
