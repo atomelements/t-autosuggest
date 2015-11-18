@@ -10,7 +10,7 @@ The autosuggest is a form element used to offer suggestions to the user, as text
 * Default Value: Untitled Autosuggest.
 
 **2. Error Message when Empty**
-* The message displayed, when a form is submitted with this field left empty.
+* The message displayed, when a form is submitted with this field left empty. Applies when the field is mandatory.
 * Shown as an input field in the property panel.
 * Default Value: You missed this. 
 
