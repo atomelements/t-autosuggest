@@ -11,7 +11,7 @@
             "dataUrl": {
                 "name": "Autosuggest Api",
                 "type": "string",
-                "value": "http://atom-project.io/demo/api/air/suggestions"
+                "value": "http://atom-project.io/demo/api/air/suggestions/"
             },
             "tokenParam": {
                 "name": "Token parameter",
