@@ -11,12 +11,17 @@
             "dataUrl": {
                 "name": "Autosuggest Api",
                 "type": "string",
-                "value": "http://atom-project.io/demo/api/air/suggestions/"
+                "value": "http://qa-mystiquecode.tavisca.com/api/content/autosuggest/"
             },
             "tokenParam": {
                 "name": "Token parameter",
                 "type": "string",
                 "value": "formattedAddress"
+            },
+            "queryParams": {
+                "name": "Query Parameters",
+                "type": "string",
+                "value": "cid=nxtb2bsite"
             }
         }
     }, {
