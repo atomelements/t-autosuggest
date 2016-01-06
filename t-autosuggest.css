@@ -18,7 +18,7 @@
   :host([no-label-float]) label{
     display: none;
   }
-  iron-icon{
+  #clearButton{
       position: absolute; 
       right: 5px;
       top: 50%;
@@ -27,23 +27,25 @@
       -ms-transform: translateY(-50%);
       -o-transform: translateY(-50%);
       transform: translateY(-50%);
-      
+      z-index: 11;
       color:  #fff;
       background: var(--grey-three);
-      width: 12px;    
-      height: 12px;   
-      border-radius: 50%;
-      padding: 4px;
+      border-radius: 4px;
+      padding: 0px 4px;
       cursor: pointer;
       display: none;
   }  
-
-  :host.label-is-floating paper-material:hover iron-icon{
+@media(min-width: 601px){
+  :host.label-is-floating:hover #clearButton{
     display: block;
+        height: 100%;
+    padding: 13px;
+    box-sizing: border-box;
+    right: 0;
   }
-
+}
   :host paper-material:hover input{
-    padding-right: 30px!important;  
+    padding-right: 55px!important;  
   }
   #spinner{
       position: absolute;
@@ -223,11 +225,11 @@
   :host.focused paper-material{
     margin: 0 10px;
   }
-  :host.label-is-floating iron-icon{
+  :host.label-is-floating.focused #clearButton{
     display: block;
   }
   
   :host paper-material input{
-    padding-right: 30px!important;  
+    padding-right: 55px!important;  
   }
 }

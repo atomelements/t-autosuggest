@@ -35,11 +35,11 @@
                 on-mouseUp="_onFocus" 
                 value="[[selectedValue]]"  
                 on-search="_onClear"
-                >
+                autocapitalize="off" autocorrect="off" autocomplete="off"> <!-- code to cancel populate in safari -->
                 <div id="spinner" class="horizontal layout flex center-justified" hidden>
                     <t-loader active></t-loader>
                 </div>
-                <iron-icon id="clearButton" icon="close"></iron-icon>
+                <span id="clearButton">cancel</span>
                 <p class="error empty-error">[[errorMessage]]</p>
                 <p class="invalid-error error">[[invalidErrorMessage]]</p>
                 <div id="dropBox" class="autocomplete"></div>
