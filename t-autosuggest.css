@@ -15,6 +15,10 @@
     font-size: var(--form-label-size);
     display: block;
     margin-bottom: var(--form-label-margin);
+    white-space: nowrap; 
+    width: 100%; 
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   :host([no-label-float]) label{
     display: none;
@@ -41,10 +45,6 @@
 @media(min-width: 601px){
   :host.label-is-floating:hover #clearButton{
     display: block;
-    height: 100%;
-    padding: 13px;
-    box-sizing: border-box;
-    right: 0;
   }
 }
   :host paper-material:hover input{
@@ -214,9 +214,12 @@
   :host ::content .autocomplete.open {
     overflow: auto;
     width:100%;
-    max-height: 100%;
+    max-height: 80vh;
     z-index: 99;
     background: var(--primary-background-color,#fff);
+  }
+  .label-container{
+    overflow: hidden;
   }
 @media (max-width: 600px){
   :host.focused{
@@ -232,6 +235,9 @@
   }
   :host.focused label{
     margin-left: 10px;
+    top: 7px!important;
+    padding-right: 16px;
+    box-sizing: border-box;
   }
   :host.focused paper-material{
     margin: 0 10px;
@@ -248,5 +254,8 @@
   
   :host.label-is-floating.focused input{
     padding-right: 25px!important;  
+  }
+  :host.focused .label-container{
+    position: relative;
   }
 }
