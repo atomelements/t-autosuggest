@@ -250,17 +250,18 @@ Polymer({
         this.$.autoSuggest.addEventListener('blur',function(){
             function allFunction(){
                 Polymer.IronDropdownScrollManager.removeScrollLock(component);
-            if(component.required && component.validateOnBlur){
-            	component.validate();
-            }
-            if (component.selectedItem) { 
-                component.selectedValue = component.selectedItem[component.tokenParam];
-        	}
+                if(component.required && component.validateOnBlur){
+                	component.validate();
+                }
+                if (component.selectedItem) { 
+                    component.selectedValue = component.selectedItem[component.tokenParam];
+            	}
                 component.classList.remove('focused');
                 component.$.dropBox.className = "autocomplete ";
                 component.$.spinner.hidden = true;
                 //to scroll to previous position when focusout
                 document.body.scrollTop = document.documentElement.scrollTop = scrollTop;
+                component.fire('blur');
             }
             setTimeout(allFunction, 10);
         });
@@ -290,12 +291,14 @@ Polymer({
 
     validate: function() {
         if (this.required) {
-                if(!this.selectedValue == true )
+                if(!this.selectedValue == true ){
                     this.classList.add('no-value');
-                else
-                {   
+                    this.classList.remove('invalid-value');
+                }else{   
                     if(this.isInvalid){
                        this.classList.add('invalid-value');
+                        this.classList.remove('no-value');
+                        return false;
                     }
                 }
                 if(!this.selectedValue == true || this.isInvalid)
