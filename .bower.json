@@ -1,6 +1,5 @@
 {
   "name": "t-autosuggest",
-  "version": "1.0.0",
   "authors": [
     "Rahul Pilkhwal <rahul.pilkhwal@tavisca.com>",
     "Shailesh Kumar Srivastava <ssrivastava@tavisca.com>",
@@ -15,7 +14,7 @@
     "Web",
     "Components"
   ],
-  "homepage": "",
+  "homepage": "https://github.com/atomelements/t-autosuggest",
   "private": true,
   "ignore": [
     "**/.*",
@@ -30,12 +29,21 @@
     "iron-input": "PolymerElements/iron-input#^1.0.6",
     "paper-material": "PolymerElements/paper-material#^1.0.2",
     "t-loader": "atomelements/t-loader#^1.0.0",
+    "t-shared-components": "atomelements/t-shared-components#^1.0.0",
     "polymer": "Polymer/polymer#^1.0.0"
   },
   "devDependencies": {
     "web-component-tester": "*",
     "webcomponentsjs": "^0.7.14",
-    "t-shared-components": "atomelements/t-shared-components#^1.0.0",
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.6"
-  }
+  },
+  "_release": "3528241fd1",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "3528241fd1d0ee6064147c322b57e5b34a778792"
+  },
+  "_source": "git://github.com/atomelements/t-autosuggest.git",
+  "_target": "master",
+  "_originalSource": "atomelements/t-autosuggest"
 }
