@@ -2,9 +2,11 @@
 <link rel="import" href="../paper-material/paper-material.html">
 <link rel="import" href="../iron-input/iron-input.html">
 <link rel="import" href="../iron-icons/iron-icons.html">
-<link rel="import" href="../iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../iron-dropdown/iron-dropdown-scroll-manager.html">
 <link rel="import" href="../t-loader/t-loader.html">
+<link rel="import" href="../paper-input/paper-input-error.html">
+<link rel="import" href="../t-input/t-input-container.html">
 <link rel="import" href="t-autosuggest-import.html">
 <!--
   `<t-autosuggest>` is a ajax driven autosuggestion component. 
@@ -16,7 +18,7 @@
 <dom-module id="t-autosuggest">
     <link rel="import" type="css" href="t-autosuggest.css">
     <template>
-
+    <style include="iron-flex"></style>
     <t-input-container fire-blur="{{validateOnBlur}}" no-label-float="[[noLabelFloat]]"  auto-validate$="[[autoValidate]]" disabled$="[[disabled]]" invalid="[[invalid]]">
 
         <div id="mainBody" class="layout vertical " style="width:100%">

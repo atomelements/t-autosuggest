@@ -125,8 +125,6 @@
     font-size: var(--autosuggest-item-text-size);
     overflow: hidden;
     padding: var(--autosuggest-item-padding);
-    /* line-height: 48px; */
-    /* height: 48px; */
     transition: background .15s linear;
     margin: 0;
     white-space: nowrap;
