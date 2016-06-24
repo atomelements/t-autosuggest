@@ -11,7 +11,7 @@
             "dataUrl": {
                 "name": "Autosuggest Api",
                 "type": "string",
-                "value": "http://qa-mystiquecode.tavisca.com/api/content/autosuggest/"
+                "value": "http://www.mocky.io/v2/576ce59b1000002d025fdbfb/"
             },
             "tokenParam": {
                 "name": "Token parameter",
@@ -21,7 +21,7 @@
             "queryParams": {
                 "name": "Query Parameters",
                 "type": "string",
-                "value": "cid=nxtb2bsite"
+                "value": ""
             }
         }
     }, {
