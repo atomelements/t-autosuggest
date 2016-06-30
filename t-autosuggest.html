@@ -8,6 +8,7 @@
 <link rel="import" href="../paper-input/paper-input-error.html">
 <link rel="import" href="../t-input/t-input-container.html">
 <link rel="import" href="t-autosuggest-import.html">
+<link rel="import" href="t-autosuggest-style.html">
 <!--
   `<t-autosuggest>` is a ajax driven autosuggestion component. 
 
@@ -16,8 +17,8 @@
     </t-autosuggest>   
 -->
 <dom-module id="t-autosuggest">
-    <link rel="import" type="css" href="t-autosuggest.css">
     <template>
+    <style include="t-autosuggest-style"></style>
     <style include="iron-flex"></style>
     <t-input-container fire-blur="{{validateOnBlur}}" no-label-float="[[noLabelFloat]]"  auto-validate$="[[autoValidate]]" disabled$="[[disabled]]" invalid="[[invalid]]">
 
