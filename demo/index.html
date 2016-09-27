@@ -11,10 +11,21 @@
 
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
+    <link rel="import" href="../../t-mystique-auth/t-mystique-auth.html"> 
   <link rel="import" href="../t-autosuggest.html">
   <link rel="import" href="../../t-shared-components/theme.html">
 </head>
 <body>
-  <t-autosuggest validate-on-blur="false" required label="sas Autosuggest" data-url="http://qa-mystiquecode.tavisca.com/api/content/autosuggest/" query-params="cid=nxtb2bsite" token-param="formattedAddress"></t-autosuggest>
+<h1>	sasasasa</h1>
+		<template is="dom-bind">	
+        <t-mystique-auth
+            name="mystique"
+            url="http://demo.travelnxt.com/api/authentication/authenticate/context"
+            token-response="{{tokenResponse}}"
+            auto>
+        </t-mystique-auth>
+        <t-autosuggest id="location" name="location" required selected-item="{{location}}" query-params="token={{tokenResponse.authenticationToken}}" label="Origin" token-param="formattedAddress" data-url="http://demo.travelnxt.com/api/content/autosuggest/" error-message="You missed this."></t-autosuggest>
+		</template>
+  
 </body>
 </html>

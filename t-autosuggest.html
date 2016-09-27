@@ -18,7 +18,12 @@
 -->
 <dom-module id="t-autosuggest">
     <template>
-    <style include="t-autosuggest-style"></style>
+    <style include="t-autosuggest-style">
+    	*,
+    	::content *{
+            -webkit-text-size-adjust: none;
+        }
+    </style>
     <style include="iron-flex"></style>
     <t-input-container fire-blur="{{validateOnBlur}}" no-label-float="[[noLabelFloat]]"  auto-validate$="[[autoValidate]]" disabled$="[[disabled]]" invalid="[[invalid]]">
 
@@ -41,9 +46,11 @@
                         on-mouseUp="_onFocus" 
                         bind-value$="[[selectedValue]]"  
                         on-search="_onClear"
+                        on-tap="_focusOnInput"
                         autocapitalize="off" autocorrect="off" autocomplete="off"> <!-- code to cancel populate in safari -->
-                        
-                        <iron-icon id="clearButton" icon="close"></iron-icon>
+                        <div id="clearContainer">	
+                        	<iron-icon id="clearButton" icon="close"></iron-icon>
+                        </div>
                     </paper-material>
                 </div>
                 <span id="cancel" on-tap="_cancel">Cancel</span>
@@ -233,7 +240,7 @@ Polymer({
     },
     listeners:{
         'tap':'simpleTap',
-        'clearButton.tap':'_clear'
+        'clearContainer.tap':'_clear'
     },
 
     attached: function() {
@@ -252,31 +259,44 @@ Polymer({
             }
             setTimeout(allFunction, 10);
         });
-        this.$.autoSuggest.addEventListener('blur',function(){
-            function allFunction(){
-                Polymer.IronDropdownScrollManager.removeScrollLock(component);
-                if(component.required && component.validateOnBlur){
-                	component.validate();
-                }
-                if (component.selectedItem) { 
-                    component.selectedValue = component.selectedItem[component.tokenParam];
-            	}
-                component.classList.remove('focused');
-                component.$.dropBox.className = "autocomplete ";
-                component.$.spinner.hidden = true;
-                //to scroll to previous position when focusout
-                document.body.scrollTop = document.documentElement.scrollTop = scrollTop;
-                component.fire('blur');
-            }
-            setTimeout(allFunction, 10);
-        });
+        
     },
 
-    _cancel:function(){
-        if(this.lastSelectedItem){
-            this.selectedItem = this.lastSelectedItem;
+    _focusOnInput: function(){
+    	this.querySelector('#autoSuggest').blur();
+   			this.querySelector('#autoSuggest').focus();
+    	
+    },
+
+    _focusingOut: function(){
+        var component = this,
+        //to handle the scrolling position when focused
+        scrollTop;
+        function allFunction(){
+            Polymer.IronDropdownScrollManager.removeScrollLock(component);
+            if (component.selectedItem) { 
+                component.selectedValue = component.selectedItem[component.tokenParam];
+        	}
+            component.classList.remove('focused');
+            component.$.dropBox.className = "autocomplete ";
+            component.$.spinner.hidden = true;
+            //to scroll to previous position when focusout
+            document.body.scrollTop = document.documentElement.scrollTop = scrollTop;
+            component.fire('blur');
+            component.querySelector('#autoSuggest').blur();
+            if(component.required && component.validateOnBlur){
+            	component.validate();
+            }
         }
-        this.$.autoSuggest.fire('blur');
+        setTimeout(allFunction, 10);
+    },
+ 
+    _cancel:function(){
+        // if(this.lastSelectedItem){
+        //     this.selectedItem = this.lastSelectedItem;
+        // }
+        this.querySelector('#autoSuggest').value = this.selectedValue;
+        this._focusingOut();
     },
     _clear:function(event){
         event.stopPropagation();
@@ -330,6 +350,7 @@ Polymer({
     _selectedItemChanged: function () {
         if (this.selectedItem != undefined) { 
             this.selectedValue = this.selectedItem[this.tokenParam];
+            this._focusingOut();
             this.validate();
         }
     },
